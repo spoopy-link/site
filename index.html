@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <title>Spoopy.link</title>
+  <link rel=stylesheet href=https://s.gus.host/fira/FiraCode.css />
+  <link rel=stylesheet href=/main.css />
+  <meta property=og:title content="spoopy.link">
+  <meta property=og:description content="easy way to see if a link is spoopy or nah 👻">
+  <meta property=og:image content="https://s.gus.host/spoopy.link_logo.png">
+  <meta property=og:url content="https://spoopy.link/">
+</head>
+<html>
+<body>
+<div class=wrapper>
+  <h1>spoopy.link</h1>
+  <h3>check urls for ip logging, phishing, malware, and more</h3>
+  <label>Check a link: <input id=input type=text></label>
+  <button id=go>Go</button>
+</div>
+<div class=footer>
+  <a href=https://github.com/devsnek/spoopy.link>GitHub</a> |
+  <a href=https://patreon.com/devsnek>Patreon</a>
+</div>
+<script nonce=inline>
+document.getElementById('input').onkeyup = function(event) {
+  const code = event.keyCode || event.which;
+  if (code !== 13) return;
+  go();
+}
+
+document.getElementById('go').onclick = go;
+
+function go() {
+  window.location.pathname = document.getElementById('input').value;
+}
+</script>
+<script src=/main.js></script>
+</body>
+</html>

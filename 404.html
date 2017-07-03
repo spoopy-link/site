@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <title>Spoopy.link</title>
+  <script src=https://cdn.rawgit.com/github/fetch/c3e1/fetch.js></script>
+  <link rel=stylesheet href=https://s.gus.host/fira/FiraCode.css />
+  <link rel=stylesheet href=/main.css />
+</head>
+<html>
+<body>
+<div class=wrapper>
+  <h1 id=header></h1>
+  <div id=results><h2></h2><ol></ol></div>
+  <div class=spinner><div class=cube1></div><div class=cube2></div></div>
+</div>
+<div class=footer>
+  <a href=https://github.com/devsnek/spoopy.link>GitHub</a> |
+  <a href=https://patreon.com/devsnek>Patreon</a>
+</div>
+<script nonce=inline>
+const safe = document.querySelector('#results h2');
+const list = document.querySelector('#results ol');
+const heading = document.getElementById('header');
+
+let suspect = window.location.pathname.slice(1).replace(/(^<|>$)/g, '');
+heading.innerHTML = suspect;
+fetch(`/json/${suspect}`)
+  .then(r => r.status === 200 ? r.json() : r.text().then(t => Promise.reject(new Error(t))))
+  .catch((err) => {
+    safe.innerHTML = err.message;
+  })
+  .then((res) => {
+    document.querySelector('.spinner').remove();
+    safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
+    heading.innerHTML = res.trail[0];
+    for (let i = 0; i < res.trail.length; i++) {
+      const li = document.createElement('li');
+      li.textContent = res.trail[i];
+      if (!res.safe && i === res.fail) li.textContent += ' \u274c';
+      else li.textContent += ' \u2714';
+      list.appendChild(li);
+    }
+  });
+</script>
+<script src=/main.js></script>
+</body>
+</html>

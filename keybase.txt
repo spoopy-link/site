@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/snek
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://spoopy.link
+  * I am snek (https://keybase.io/snek) on keybase.
+  * I have a public key with fingerprint 24E8 BBD2 DA10 B312 CF16  4CA2 58CC E2A2 4E2D 41DC
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01014c71e16fc5565a6402d7b507af69077d47733d2513bfeb7dd59c0d0b00778e510a",
+            "fingerprint": "24e8bbd2da10b312cf164ca258cce2a24e2d41dc",
+            "host": "keybase.io",
+            "key_id": "58cce2a24e2d41dc",
+            "kid": "01014c71e16fc5565a6402d7b507af69077d47733d2513bfeb7dd59c0d0b00778e510a",
+            "uid": "c1672c0ceb07f6cc171d783d47033319",
+            "username": "snek"
+        },
+        "service": {
+            "hostname": "spoopy.link",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1498728435,
+    "expire_in": 157680000,
+    "prev": "d6fa6fe01556ea520bad2b052c21288731d079ca7180e873f56801960c150af2",
+    "seqno": 42,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.72
+Comment: https://keybase.io/crypto
+
+yMIgAnicrVJbSFRBGF4rJTfKwOyiVnCgwLCamXPmzNlFSKisKHoybKHc5szMWY+X
+c9bd1dwWYX1Iw4iiogftQlYgQkIXgvDBrKCyG2VEl5fUCKmo7KJgBM2ReuuxeRnm
+/y7z/T//7bkzff6ML3OeLE6PrZ2XcX/gWIMvVH7nW0oxXZ5UgimlRkxfopaLeCJc
+Y3MlqAAIoMYIFFC3GMY6proGECcmBoRaegAQwjVCVJUjDFXTEibhHAcY4MAEEjQE
+hoAqxYplOxERi8ZsJyFtkSYM0+SIUwhMFSJmQV1jFGGDMYGohBHXIGdSWOXGPYUM
+Z9K4WGO7siYf4el4/+D/59wN03YM6gQxwIQJiKUzBgnkxFClBVBVFQY8YlzEHFon
+JDvuiBqluViRlUabCW+oXhd/0ajrRpNram2nRsqiMTfhMrdWAlWJRDQe9ISJZNRj
+7hVm+I9H2LQdLkcoFY0iFrddRwlCyWQJ2zOFWsAgyNBUXKyIpqgdE2HbY2CiG0Ae
+7x/RKC25blHdEgDKmQiKETApRybAiCGIDIOokAMSYJRAAwj5tLA0gAEdMIgBtZDi
+dVXvuEpQQzInjXgN2RGHJhpiQmm+eWPXLF+G35eVOcPbLZ8/e/7fjfuaP9u3f0O6
+4nFxmiY/1w8HVy3e9+6qnvdgwl/SHrmXu7y1cgee+ebo+uGT6aFf2N/bcasjsnVw
+9vyy03XHO+eM4Z4DQ2e+G/f6lJFItzNamr38XOuFrqHnReOqfe5tzqNrR8pD/med
+U99Wvz9kdrWne5tDhYXjh7ZtKjxysGzBR7dvxUTFwrJFBTdyN687nO4+//psD28J
+GeP17ODQYEug6VPb7urSBdWVXV2XRqZ23n26eod9uTSnGvmrTiy5fjH1Iq9tz6mc
+lWZB+eCW7SOT/fkP34q8K8l8A9Oly0qyel6O9rZkLS2aDPW/ytw4FtUitO7Yh9xb
+n3/odU6q++dAyvewofA3D1E6aQ==
+=KMy9
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/snek
+
+==================================================================
