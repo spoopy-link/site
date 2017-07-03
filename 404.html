@@ -31,8 +31,8 @@ fetch(`/json/${suspect}`)
   .then((res) => {
     document.querySelector('.spinner').remove();
     safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
-    heading.innerHTML = res.chain[0];
-    for (const item of chain) {
+    heading.innerHTML = res.chain[0].url;
+    for (const item of res.chain) {
       const li = document.createElement('li');
       li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
       list.appendChild(li);
