@@ -31,12 +31,10 @@ fetch(`/json/${suspect}`)
   .then((res) => {
     document.querySelector('.spinner').remove();
     safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
-    heading.innerHTML = res.trail[0];
-    for (let i = 0; i < res.trail.length; i++) {
+    heading.innerHTML = res.chain[0];
+    for (const item of chain) {
       const li = document.createElement('li');
-      li.textContent = res.trail[i];
-      if (!res.safe && i === res.fail) li.textContent += ' \u274c';
-      else li.textContent += ' \u2714';
+      li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
       list.appendChild(li);
     }
   });
