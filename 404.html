@@ -23,7 +23,7 @@ const heading = document.getElementById('header');
 
 let suspect = window.location.pathname.slice(1).replace(/(^<|>$)/g, '');
 heading.innerHTML = suspect;
-fetch(`/json/${suspect}`)
+fetch(`/api/v1/${suspect}`)
   .then(r => r.status === 200 ? r.json() : r.text().then(t => Promise.reject(new Error(t))))
   .catch((err) => {
     safe.innerHTML = err.message;
