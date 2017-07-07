@@ -23,14 +23,22 @@ const safe = document.querySelector('#results h2');
 const list = document.querySelector('#results ol');
 const heading = document.getElementById('header');
 
-let suspect = window.location.pathname.slice(1).replace(/(^<|>$)/g, '');
+const cache = JSON.parse(localStorage.getItem('cache')) || {};
+
+const suspect = window.location.pathname.slice(1).replace(/(^<|>$)/g, '');
 heading.innerHTML = suspect;
-fetch(`/api/v1/${suspect}`)
+(cache[suspect] ?
+ Promise.resolve({ status: 200, json: () => cache[suspect] }) :
+ fetch(`/api/v1/${suspect}`))
   .then(r => r.status === 200 ? r.json() : r.text().then(t => Promise.reject(new Error(t))))
   .catch((err) => {
     safe.innerHTML = err.message;
   })
   .then((res) => {
+    cache[res.chain[0].url] = res;
+    cache[suspect] = res;
+    localStorage.setItem('cache', JSON.stringify(cache));
+
     document.querySelector('.spinner').remove();
     safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
     heading.innerHTML = res.chain[0].url;
