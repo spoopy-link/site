@@ -32,6 +32,10 @@ document.getElementById('go').onclick = go;
 function go() {
   window.location.pathname = document.getElementById('input').value;
 }
+  
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(() => console.log("Service Worker Registered"));
+}
 </script>
 <script src=/main.js></script>
 </body>
