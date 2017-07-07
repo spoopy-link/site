@@ -85,6 +85,8 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', (event) => {
   console.log('SW REQ', event.request.url);
-  const res = caches.match(event.request).then((r) => r || fetch(event.request));
+  const res = caches.match(event.request)
+    .then((r) => r || fetch(event.request))
+    .catch(() => console.log('Failed to fetch', event.request.url));
   event.respondWith(res);
 });
