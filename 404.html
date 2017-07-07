@@ -34,10 +34,7 @@ heading.innerHTML = suspect;
 (cache.has(suspect) ?
  Promise.resolve({ status: 200, json: () => cache.get(suspect) }) :
  fetch(`/api/v1/${suspect}`))
-  .then(r => r.status === 200 ? r.json() : r.text().then(t => Promise.reject(new Error(t))))
-  .catch((err) => {
-    safe.innerHTML = err.message;
-  })
+  .then(r => r.status === 200 ? r.json() : r.json().then(t => Promise.reject(new Error(t.error))))
   .then((res) => {
     cache.set(res.chain[0].url, res);
     cache.set(suspect, res);
@@ -50,7 +47,10 @@ heading.innerHTML = suspect;
       li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
       list.appendChild(li);
     }
-  });
+  })
+  .catch((err) => {
+    safe.innerHTML = err.message;
+  })
 </script>
 <script src=/main.js></script>
 </body>
