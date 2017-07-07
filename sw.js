@@ -76,6 +76,7 @@ self.addEventListener('install', (e) => {
       '/',
       '/main.js',
       '/main.css',
+      '/fetch.js',
       'https://s.gus.host/fira/FiraCode.css',
       'https://s.gus.host/fira/FiraCode-Medium.ttf',
       'https://s.gus.host/fira/FiraCode-Regular.ttf',
