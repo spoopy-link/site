@@ -1,8 +1,14 @@
 {
   "name": "spoopy.link",
   "short_name": "spoopy.link",
-  "icons": [],
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "https://s.gus.host/spoopy.link_logo.png",
+      "type": "image/png"
+    }
+  ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "browser"
 }
