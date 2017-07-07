@@ -1,0 +1,8 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>spoopy.link</ShortName>
+  <Description>spoopy.link link scanning</Description>
+  <Tags>HTTPS, security, links, scanning</Tags>
+  <Contact>hi@spoopy.link</Contact>
+  <Url type="text/html" method="GET" template="https://spoopy.link/{searchTerms}"/>
+  <Url type="application/x-suggestions+json" method="GET" template="https://spoopy.link/{searchTerms}"/>
+</OpenSearchDescription>
