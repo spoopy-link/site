@@ -34,12 +34,15 @@ heading.innerHTML = suspect;
 (cache.has(suspect) ?
  Promise.resolve({ status: 200, json: () => cache.get(suspect) }) :
  fetch(`/api/v1/${suspect}`))
-  .then(r => r.status === 200 ? r.json() : r.json().then(t => Promise.reject(new Error(t.error))))
+  .then((res) => {
+    document.querySelector('.spinner').remove();
+    if (res.status === 200) return res.json();
+    return res.json().then(t => Promise.reject(new Error(t.error)));
+  })
   .then((res) => {
     cache.set(res.chain[0].url, res);
     cache.set(suspect, res);
 
-    document.querySelector('.spinner').remove();
     safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
     heading.innerHTML = res.chain[0].url;
     for (const item of res.chain) {
@@ -50,7 +53,7 @@ heading.innerHTML = suspect;
   })
   .catch((err) => {
     safe.innerHTML = err.message;
-  })
+  });
 </script>
 <script src=/main.js></script>
 </body>
