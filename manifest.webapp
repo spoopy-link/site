@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "name": "spoopy.link",
+  "launch_path": "/",
+  "description": "spoopy.link link checking",
+  "icons": {},
+  "developer": {
+    "name": "gus",
+    "url": "https://gus.host"
+  },
+  "installs_allowed_from": ["*"],
+  "default_locale": "en",
+  "permissions": {},
+  "locales": {
+    "en": {
+      "name": "spoopy.link",
+      "description": "spoopy.link link checking"
+    }
+  }
