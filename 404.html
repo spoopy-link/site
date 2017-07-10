@@ -24,8 +24,12 @@ const list = document.querySelector('#results ol');
 const heading = document.getElementById('header');
 
 const cache = {
-  get: (name) => JSON.parse(localStorage.getItem(name)),
-  set: (name, value) => localStorage.setItem(name, JSON.stringify(value)),
+  get: (name) => {
+    const i = JSON.parse(localStorage.getItem(name));
+    if (!i || i && Date.now() - i.time > 172800000) return null;
+    return i.data;
+  },
+  set: (name, data) => localStorage.setItem(name, JSON.stringify({ data, time: Date.now() })),
   has: (name) => !!localStorage.getItem(name),
 };
 
