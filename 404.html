@@ -11,8 +11,9 @@
 <body>
 <div class=wrapper>
   <h1 id=header></h1>
-  <div id=results><h2></h2><ol></ol></div>
-  <div class=spinner><div class=cube1></div><div class=cube2></div></div>
+  <div id=results><h2></h2><ol>
+    <div class=spinner><div class=cube1></div><div class=cube2></div></div>
+  </ol></div>
 </div>
 <div class=footer>
   <a href=https://github.com/spoopy-link>GitHub</a> |
@@ -22,6 +23,7 @@
 const safe = document.querySelector('#results h2');
 const list = document.querySelector('#results ol');
 const heading = document.getElementById('header');
+const spinner = document.querySelector('.spinner');
 
 const cache = {
   get: (name) => {
@@ -35,30 +37,46 @@ const cache = {
 
 const suspect = window.location.pathname.slice(1).replace(/(^<|>$)/g, '');
 heading.innerHTML = suspect;
-(cache.has(suspect) ?
- Promise.resolve({ status: 200, json: () => cache.get(suspect) }) :
- fetch(`/api/v1/${suspect}`))
-  .then((res) => {
-    document.querySelector('.spinner').remove();
-    if (res.status === 200) return res.json();
-    return res.json().then(t => Promise.reject(new Error(t.error)));
-  })
-  .then((res) => {
-    cache.set(res.chain[0].url, res);
-    cache.set(suspect, res);
-
-    safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
-    heading.innerHTML = res.chain[0].url;
-    for (const item of res.chain) {
-      const li = document.createElement('li');
-      li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
-      list.appendChild(li);
+if (cache.has(suspect)) {
+  const res = cache.get(suspect);
+  safe.innerHTML = res.safe ? 'Safe' : 'Unsafe';
+  heading.innerHTML = res.chain[0].url;
+  for (const item of res.chain) addResult(item);
+  spinner.remove();
+} else {
+  const ws = new WebSocket(`${getWS()}/${suspect}`);
+  ws.onmessage = (event) => {
+    let item;
+    try {
+      item = JSON.parse(event.data);
+    } catch (err) {
+      console.error(err.stack);
+      safe.innerHTML = err.message;
+      return;
     }
-  })
-  .catch((err) => {
-    console.error(err.stack);
-    safe.innerHTML = err.message;
-  });
+    if (item.chain) {
+      safe.innerHTML = item.safe ? 'Safe' : 'Unsafe';
+      heading.innerHTML = item.chain[0].url;
+      cache.set(item.chain[0].url, item);
+      cache.set(suspect, item);
+      spinner.remove();
+    } else {
+      addResult(item);
+    }
+  }
+}
+
+function addResult(item) {
+  const li = document.createElement('li');
+  li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
+  list.insertBefore(li, spinner);
+}
+
+function getWS() {
+  const l = window.location;
+  const protocol = l.protocol.endsWith('s:') ? 'wss' : 'ws';
+  return `${protocol}://${l.host}`;
+}
 </script>
 <script src=/main.js></script>
 </body>
