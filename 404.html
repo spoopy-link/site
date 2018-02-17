@@ -55,8 +55,8 @@ if (cache.has(suspect)) {
       return;
     }
     if (item.chain) {
-      safe.innerHTML = item.safe ? 'Safe' : 'Unsafe';
-      heading.innerHTML = item.chain[0].url;
+      safe.textContent = item.safe ? 'Safe' : 'Unsafe';
+      heading.textContent = item.chain[0].url;
       cache.set(item.chain[0].url, item);
       cache.set(suspect, item);
       spinner.remove();
@@ -68,7 +68,12 @@ if (cache.has(suspect)) {
 
 function addResult(item) {
   const li = document.createElement('li');
-  li.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
+  const p = document.createElement('p');
+  p.textContent = `${item.url} ${item.safe ? '\u2714' : '\u274c'}`;
+  const reasons = document.createElement('p');
+  reasons.textContent = item.reasons.join(', ');
+  li.append(p);
+  li.append(reasons);
   list.insertBefore(li, spinner);
 }
 
